@@ -16,8 +16,7 @@ let currentTime = null;
 let setTime = null;
 let intervalId = null;
 
-let active = refs.startButton.disabled;
-active = true;
+refs.startButton.disabled = true;
 
 const options = {
   enableTime: true,
@@ -29,10 +28,10 @@ const options = {
     currentTime = options.defaultDate.getTime();
     if (currentTime > setTime) {
       Notify.failure('Виберіть дату з майбутнього');
-      active = true;
+      refs.startButton.disabled = true;
     }
     if (currentTime < setTime) {
-      active = false;
+      refs.startButton.disabled = false;
     }
   },
 };
