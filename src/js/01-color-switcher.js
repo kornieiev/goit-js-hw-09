@@ -1,23 +1,26 @@
 const body = document.querySelector('body');
-console.log(body);
-
 const startBtn = document.querySelector('button[data-start]');
 const stopBtn = document.querySelector('button[data-stop]');
 let setColor = null;
+
+stopBtn.disabled = true;
 
 startBtn.addEventListener('click', () => {
   setColor = setInterval(() => {
     body.style.backgroundColor = getRandomHexColor();
   }, 1000);
-  startBtn.disabled = true;
-  stopBtn.disabled = false;
+  disableBtn(false, true);
 });
 
 stopBtn.addEventListener('click', () => {
   clearInterval(setColor);
-  stopBtn.disabled = true;
-  startBtn.disabled = false;
+  disableBtn(true, false);
 });
+
+function disableBtn(argStop, argStart) {
+  stopBtn.disabled = argStop;
+  startBtn.disabled = argStart;
+}
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
